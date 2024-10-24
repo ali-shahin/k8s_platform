@@ -55,14 +55,14 @@ resource "kubernetes_service_account" "secret_store" {
     name      = "secret-store"
     namespace = "external-secrets"
     annotations = {
-      "eks.amazonaws.com/role-arn" = "arn:aws:iam:${data.aws_caller_identity.current.account_id}:role/secret-store"
+      "eks.amazonaws.com/role-arn" = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/secret-store"
     }
   }
 }
 
 resource "kubernetes_manifest" "cluster_secret_store" {
   manifest = yamldecode(<<YAML
-apiVersion: external-secrets.io/v1alpha1
+apiVersion: external-secrets.io/v1beta1
 kind: ClusterSecretStore
 metadata:
   name: aws-store
@@ -75,7 +75,7 @@ spec:
         jwt:
           serviceAccountRef:
             name: secret-store
-            namespace: external-secret
+            namespace: external-secrets
     YAML
   )
   depends_on = [
