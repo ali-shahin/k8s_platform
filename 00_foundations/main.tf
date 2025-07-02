@@ -82,7 +82,7 @@ module "cert_manager_irsa_role" {
   tags = local.tags
 }
 
-# iam role to fitch secrets stored on aws
+# iam role to fetch secrets stored on aws
 module "external_secrets_irsa_role" {
   source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
 

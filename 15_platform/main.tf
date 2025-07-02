@@ -47,7 +47,7 @@ spec:
   ]
 }
 
-# configure the secret manager to enable eso to fitch secrets from aws parameter store.
+# configure the secret manager to enable eso to fetch secrets from aws parameter store.
 data "aws_caller_identity" "current" {}
 
 resource "kubernetes_service_account" "secret_store" {

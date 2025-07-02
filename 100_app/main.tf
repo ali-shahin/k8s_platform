@@ -2,11 +2,14 @@ locals {
   cluster_name = "terraform-k8s-demo"
 }
 
-
 # create application namespace
 resource "kubernetes_namespace" "onlineboutique" {
   metadata {
     name = "onlineboutique"
+    labels = {
+      "app.kubernetes.io/name" = "onlineboutique"
+      "app.kubernetes.io/part-of" = "onlineboutique"
+    }
   }
 }
 
